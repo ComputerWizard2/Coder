@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.yuzhi.bean.Reader;
 import com.yuzhi.daoimpl.ReaderDaoImpl;
@@ -17,6 +18,7 @@ import com.yuzi.dao.ReaderDao;
  */
 @WebServlet("/login")
 public class Login extends HttpServlet {
+	private static ReaderDao readerDao = new ReaderDaoImpl();;
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -38,6 +40,11 @@ public class Login extends HttpServlet {
 		String utype = request.getParameter("utype");
 
 		String uname = request.getParameter("username");
+		// 将用户名存储在session对象里
+		HttpSession session = request.getSession();
+		Reader reader2 = readerDao.findReaderByName(uname);
+		session.setAttribute("user", reader2);
+
 		String password = request.getParameter("pwd");
 		// 将现有的数据封装到Reader的实体类中
 		Reader reader = new Reader();
@@ -56,7 +63,7 @@ public class Login extends HttpServlet {
 			} else {
 
 				// 向用户端跳转
-				response.sendRedirect("R_Homepage.jsp");
+				response.sendRedirect("R_HomePage.jsp");
 
 			}
 
@@ -69,11 +76,9 @@ public class Login extends HttpServlet {
 	}
 
 	private static boolean isUser(Reader reader) {
-		// 开始调用dao层的方法
+		// 开始调用dao层
 
-		ReaderDao readerDao = new ReaderDaoImpl();
 		boolean b = readerDao.findUser(reader);
-		System.out.println("--------------------------------------------" + b);
 
 		if (b) {
 			return true;

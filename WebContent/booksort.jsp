@@ -22,8 +22,8 @@ font-size:20px;
          <table align="center" bgcolor="black" cellpadding="1" cellspacing="1" >             
              <tr bgcolor="yellow">
                  <td class="one">图书所有类型</td>
-                 <c:forEach items="${requestScope.bslist2}" var="bs2">
-				         <td class="two">${bs2.getBooksort()}</td>
+                 <c:forEach items="${bslist2}" var="bs2">
+				         <td class="two">${bs2.bSort}</td>
 			     </c:forEach>	             
              </tr>
          </table>

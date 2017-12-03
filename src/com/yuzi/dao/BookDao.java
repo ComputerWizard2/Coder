@@ -19,4 +19,17 @@ public interface BookDao {
 
 	public List<Books> mfindBookByStrip(String name);
 
+	// 查找所有的图书
+	public List<Books> findAllBooks();
+
+	// 插入一条图书记录
+	public boolean insertBook(Books books);
+
+	// 删除一条图书记录
+	public boolean deleteBook(String barCode);
+
+	// 更具条形码查找对象
+	public Books findBookByCodeBar(String barCode);
+	// up
+
 }

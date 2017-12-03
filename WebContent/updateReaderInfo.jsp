@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body bgcolor="#FFFFCC">
-   <form name="updateReaderInfo_from" action="updateReaderInfoServlet" method="post" target="_self">
+   <form name="updateReaderInfo_from" action="updateReaderInfoServlet?uname=${param.NAME}" method="post" target="_self">
       <table align="center" width="400" cellspacing="5px">
 			<tr>
 				<td align="center" colspan="2">
@@ -18,15 +18,15 @@
 			</tr>
 			<tr>
 				<td  width="160px">用户名：</td>
-				<td><c:out value="${NAME}"></c:out></td>
+				<td>${param.NAME}</td>
 			</tr>
 			<tr>
 				<td  width="160px">学号/工号：</td>
-				<td><c:out value="${RNO}"></c:out></td>
+				<td><c:out value="${param.RNO}"></c:out></td>
 			</tr>
 			<tr>
 				<td  width="160px">类别：</td>
-				<td><c:out value="${RSORT}"></c:out></td>
+				<td><c:out value="${param.RSORT}"></c:out></td>
 			</tr>									
 			<tr>
 				<td  width="160px">性别：</td>
@@ -60,5 +60,22 @@
 			</tr>
 	     </table>
    </form>
+   <script type="text/javascript">
+   		var newrsex=document.getElementsByName("newrsex")
+   
+		var sex ='${param.RSEX}';
+		for (var i=0;i<newrsex.lenth;i++)
+			{
+				if(newrsex[i].value==sex)
+					{
+					newrsex[i].checked=true;
+						
+					
+					}
+						
+			
+			}
+		
+</script>
 </body>
 </html>

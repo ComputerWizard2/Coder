@@ -1,5 +1,7 @@
 package com.yuzi.dao;
 
+import java.util.List;
+
 import com.yuzhi.bean.Reader;
 
 public interface ReaderDao {
@@ -14,5 +16,18 @@ public interface ReaderDao {
 	public boolean deleteReader(int rno);
 
 	// 根据用户的rno的查找对象，返回对象
-	public Reader findOne(int rno);
+	public Reader findOne(String rName);
+
+	// 查找所有的用户
+	public List<Reader> findAllReader();
+
+	// 查找用户通过名字
+	public Reader findReaderByName(String name);
+
+	// 更新用户的数据的信息
+	public boolean updateReaderInfo(Reader reader);
+
+	// 更新用户的部分信息
+	public boolean updateReaderPartInfo(Reader reader);
+
 }

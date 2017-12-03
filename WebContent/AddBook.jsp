@@ -46,7 +46,7 @@
 				<td>											
 				  <select name="sort">
 				     <c:forEach items="${requestScope.bslist}" var="bs">
-				         <option>${bs.getBooksort()}</option>
+				         <option>${bs.bSort}</option>
 				     </c:forEach>				     
 				  </select>
 				</td>				

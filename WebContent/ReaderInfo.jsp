@@ -28,18 +28,20 @@
 			<td><b>电话号码</b></td>
 			<td><b>借阅数量</b></td>
 			<td><b>可借数量</b></td>
+			<td><b>密码</b></td>
 		</tr>
 		<c:forEach items="${requestScope.list}" var="r">
 			<tr align="center" bgcolor="white">
-				<td>${r.getrSort()}</td>
-				<td>${r.getrName()}</td>
-				<td>${r.getrsex()}</td>
-				<td>${r.getrage()}</td>				
-				<td>${r.getrClass()}</td>
-				<td>${r.getrNo()}</td>
-				<td>${r.getrPhoneNum()}</td>
-				<td>${r.getLendNum()}</td>
-				<td>${r.getCanLendNum()}</td>
+				<td>${r.rSort}</td>
+				<td>${r.rName}</td>
+				<td>${r.rSex}</td>
+				<td>${r.rAge}</td>				
+				<td>${r.rClass}</td>
+				<td>${r.rNo}</td>
+				<td>${r.rPhoneNum}</td>
+				<td>${r.lendNum}</td>
+				<td>${r.canLendNum}</td>
+				<td>${r.passWord}</td>
 			</tr>			
 		</c:forEach>
 		
@@ -48,10 +50,10 @@
 			  <td><b>已借图书</b></td>	
 			  <td><b>图书条形码</b></td>
 		   </tr>		   		
-		   <c:forEach items="${requestScope.list2}" var="l">	
+		   <c:forEach items="${lendBook}" var="l">	
 			  <tr align="center">				
-				 <td bgcolor="white">${l.getLendbook()}</td>	
-				  <td bgcolor="white">${l.getBarCode()}</td>
+				 <td bgcolor="white">${l.lendBook}</td>	
+				  <td bgcolor="white">${l.barCode}</td>
 			  </tr>  							
 		   </c:forEach>	 		   
 		</table>				

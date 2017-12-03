@@ -23,15 +23,15 @@ public class BookDaoImpl implements BookDao {
 		try {
 			connection = JDBCPoolUtil.getConnection();
 			preparedstatement = connection.prepareStatement("select * from books where bname= ? ");
+
 			preparedstatement.setString(1, name);
 
 			resultset = preparedstatement.executeQuery();
-			boolean r = resultset.next();
+
 			list = new ArrayList<>();
-			while (r) {
+			while (resultset.next()) {
 				Books books = new Books();
 				books.setbName(resultset.getString("bName"));
-				System.out.println(resultset.getString("bName"));
 				books.setWriter(resultset.getString("writer"));
 				books.setPress(resultset.getString("press"));
 				books.setPresstime(resultset.getString("presstime"));
@@ -200,6 +200,113 @@ public class BookDaoImpl implements BookDao {
 		}
 
 		return list;
+	}
+
+	@Override
+	public List<Books> findAllBooks() {
+		List<Books> list = null;
+		try {
+			connection = JDBCPoolUtil.getConnection();
+			preparedstatement = connection.prepareStatement("select * from books ");
+
+			resultset = preparedstatement.executeQuery();
+			list = new ArrayList<>();
+			while (resultset.next()) {
+				Books books = new Books();
+				books.setbName(resultset.getString("bName"));
+				books.setWriter(resultset.getString("writer"));
+				books.setPress(resultset.getString("press"));
+				books.setPresstime(resultset.getString("presstime"));
+				books.setPrice(resultset.getDouble("price"));
+				books.setSort(resultset.getString("sort"));
+				books.setPageNum(resultset.getInt("pageNum"));
+				books.setState(resultset.getString("state"));
+				list.add(books);
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return list;
+
+	}
+
+	@Override
+	public boolean insertBook(Books books) {
+		try {
+
+			connection = JDBCPoolUtil.getConnection();
+			preparedstatement = connection.prepareStatement(
+					"insert into books(bname,writer,press,presstime,pageNum,price,sort,barCode) values(?,?,?,?,?,?,?,?)");
+			preparedstatement.setString(1, books.getbName());
+			preparedstatement.setString(2, books.getWriter());
+			preparedstatement.setString(3, books.getPress());
+			preparedstatement.setString(4, books.getPresstime());
+			preparedstatement.setInt(5, books.getPageNum());
+			preparedstatement.setDouble(6, books.getPrice());
+			preparedstatement.setString(7, books.getSort());
+			preparedstatement.setString(8, books.getBarCode());
+			int i = preparedstatement.executeUpdate();
+			if (i > 0) {
+				return true;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
+	@Override
+	public boolean deleteBook(String barCode) {
+		try {
+
+			connection = JDBCPoolUtil.getConnection();
+			preparedstatement = connection.prepareStatement("delete from books where barcode=?");
+
+			preparedstatement.setString(1, barCode);
+			int i = preparedstatement.executeUpdate();
+			if (i > 0) {
+				return true;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public Books findBookByCodeBar(String barCode) {
+		Books books = new Books();
+		try {
+			connection = JDBCPoolUtil.getConnection();
+			preparedstatement = connection.prepareStatement("select * from books where barcode =?");
+			preparedstatement.setString(1, barCode);
+			resultset = preparedstatement.executeQuery();
+
+			if (resultset.next()) {
+				books.setbName(resultset.getString("bName"));
+				books.setWriter(resultset.getString("writer"));
+				books.setPress(resultset.getString("press"));
+				books.setPresstime(resultset.getString("presstime"));
+				books.setPrice(resultset.getDouble("price"));
+				books.setSort(resultset.getString("sort"));
+				books.setPageNum(resultset.getInt("pageNum"));
+				books.setState(resultset.getString("state"));
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCPoolUtil.closeResource(connection, preparedstatement, resultset);
+		}
+
+		return books;
 	}
 
 }

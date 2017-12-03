@@ -96,7 +96,7 @@ public class BookInfoServlet extends HttpServlet {
 			switch (select) {
 			case "书名":
 				List<Books> findBookByBname = findBookByBname(name);
-				System.out.println("------------->" + findBookByBname);
+				System.out.println(findBookByBname);
 				HttpSession session = request.getSession();
 				if (findBookByBname != null && findBookByBname.size() > 0) {
 

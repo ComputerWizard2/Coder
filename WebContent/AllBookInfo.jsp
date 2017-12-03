@@ -28,17 +28,17 @@
 			<td><b>类      别</b></td>
 			<td><b>库存量</b></td>
 		</tr>
-		<c:forEach items="${requestScope.list}" var="b">
+		<c:forEach items="${list}" var="b">
 			<tr align="center" bgcolor="white">
-			    <td>${b.getbarCode()}</td>
-				<td>${b.getbName()}</td>
-				<td>${b.getwriter()}</td>
-				<td>${b.getpress()}</td>
-				<td>${b.getpresstime()}</td>				
-				<td>${b.getpageNum()}</td>
-				<td>${b.getprice()}</td>
-				<td>${b.getsort()}</td>
-				<td>${b.getBooknum()}</td>				
+			    <td>${b.barCode}</td>
+				<td>${b.bName}</td>
+				<td>${b.writer}</td>
+				<td>${b.press}</td>
+				<td>${b.presstime}</td>				
+				<td>${b.pageNum}</td>
+				<td>${b.price}</td>
+				<td>${b.sort}</td>
+				<td>${b.lengNum}</td>				
 			</tr>
 		</c:forEach>
 	</table>	

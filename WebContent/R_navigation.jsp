@@ -18,8 +18,8 @@ font-size:18px;
        <td height="35" width="110"><a href="LibraryInfo.jsp" target="mainFrame">图书馆信息</a> </td>
        <td height="35" width="100"><a href="BookSeek.jsp" target="mainFrame">图书搜索</a> </td>
        <td height="35" width="100"><a href="AllBookInfo" target="mainFrame">图书库存</a> </td>
-       <td height="35" width="100"><a href="ReaderInfoServlet" target="mainFrame">用户信息</a> </td> 
-       <td height="35" width="140"><a href="updateReaderInfo.jsp" target="mainFrame">修改用户信息</a> </td>            
+       <td height="35" width="100"><a href="CurrentReaderInfoServlet?rName=${user.rName}" target="mainFrame">用户信息</a> </td> 
+       <td height="35" width="140"><a href="updateReaderInfoUser.jsp" target="mainFrame">修改用户信息</a> </td>            
        <td height="35" width="100"><a href="LendBooks.jsp" target="mainFrame">借阅图书</a> </td>
        <td height="35" width="100"><a href="returnBook.jsp" target="mainFrame">归还图书</a> </td>      
      </tr>

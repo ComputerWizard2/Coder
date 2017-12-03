@@ -4,7 +4,13 @@ public class Reader {
 	private String rNo;
 	private String rName;
 	private String rSex;
-	private String rAge;
+	private int rAge;
+	private String rClass;
+	private String rSort;
+	private String rPhoneNum;
+	private String passWord;
+	private int lendNum;
+	private int canLendNum;
 
 	@Override
 	public String toString() {
@@ -12,13 +18,6 @@ public class Reader {
 				+ ", rSort=" + rSort + ", rPhoneNum=" + rPhoneNum + ", passWord=" + passWord + ", lendNum=" + lendNum
 				+ ", canLendNum=" + canLendNum + "]";
 	}
-
-	private String rClass;
-	private String rSort;
-	private String rPhoneNum;
-	private String passWord;
-	private int lendNum;
-	private int canLendNum;
 
 	public String getrNo() {
 		return rNo;
@@ -44,11 +43,11 @@ public class Reader {
 		this.rSex = rSex;
 	}
 
-	public String getrAge() {
+	public int getrAge() {
 		return rAge;
 	}
 
-	public void setrAge(String rAge) {
+	public void setrAge(int rAge) {
 		this.rAge = rAge;
 	}
 

@@ -248,6 +248,7 @@ public class BookDaoImpl implements BookDao {
 			preparedstatement.setDouble(6, books.getPrice());
 			preparedstatement.setString(7, books.getSort());
 			preparedstatement.setString(8, books.getBarCode());
+			System.out.println(books.getBarCode());
 			int i = preparedstatement.executeUpdate();
 			if (i > 0) {
 				return true;
@@ -307,6 +308,28 @@ public class BookDaoImpl implements BookDao {
 		}
 
 		return books;
+	}
+
+	@Override
+	public boolean updataBook(Books book) {
+		try {
+			connection = JDBCPoolUtil.getConnection();
+			preparedstatement = connection.prepareStatement("updata books set lendnum=?, state=?, borrower=?");
+			preparedstatement.setInt(1, book.getLengNum());
+			preparedstatement.setString(2, book.getState());
+			preparedstatement.setString(3, book.getBorrower());
+			int i = preparedstatement.executeUpdate();
+			if (i > 0) {
+				return true;
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return false;
 	}
 
 }

@@ -42,6 +42,7 @@ public class Login extends HttpServlet {
 		String uname = request.getParameter("username");
 		// 将用户名存储在session对象里
 		HttpSession session = request.getSession();
+		session.setMaxInactiveInterval(60 * 60 * 60 * 24);
 		Reader reader2 = readerDao.findReaderByName(uname);
 		session.setAttribute("user", reader2);
 

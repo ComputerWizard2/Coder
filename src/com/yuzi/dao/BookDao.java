@@ -30,6 +30,8 @@ public interface BookDao {
 
 	// 更具条形码查找对象
 	public Books findBookByCodeBar(String barCode);
-	// up
+
+	// 更新一条数据
+	public boolean updataBook(Books book);
 
 }

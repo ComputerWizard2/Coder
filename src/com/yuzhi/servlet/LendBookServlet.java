@@ -45,9 +45,11 @@ public class LendBookServlet extends HttpServlet {
 		boolean flag2 = true;
 		// 1.Reader 表里的lendnum+1 和 canlendnum -1
 		HttpSession session = request.getSession();
+
 		ReaderDao readerDao = new ReaderDaoImpl();
 		// 获取当前用户
 		Reader reader = (Reader) session.getAttribute("user");
+		System.out.println("----->" + reader);
 		int r = reader.getLendNum();
 		reader.setLendNum(r + 1);
 		if (reader.getCanLendNum() > 1) {
@@ -81,8 +83,9 @@ public class LendBookServlet extends HttpServlet {
 		}
 		book.setLengNum(book.getLengNum() - 1);
 		book.setBorrower(reader.getrName());
-		// 调用dao层的方法进行插入
-		boolean insertBook = bookDaoImpl.insertBook(book);
+		book.setBarCode(barCode);
+		// 调用dao层的方法进行更新数据
+		boolean insertBook = bookDaoImpl.updataBook(book);
 		if (insertBook && flag && flag2 && insertLendBook) {
 			request.setAttribute("success", "借阅成功了");
 			request.getRequestDispatcher("LendBooks.jsp");
